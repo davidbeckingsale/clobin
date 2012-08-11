@@ -24,3 +24,7 @@
                   "text"]]
                [:button {:type "submit" :class "btn btn-primary btn-large"} "Paste!"]]
               content))
+
+(defpartial paste [& content]
+            (layout
+              [:pre content]))
