@@ -1,5 +1,6 @@
 (ns clobin.models.paste
-  (:require [taoensso.carmine :as r]))
+  (:require [taoensso.carmine :as r]
+            [hiccup.util :as hu]))
 
 (def pool (r/make-conn-pool :max-active 8))
 (def spec-server1 (r/make-conn-spec :host     "127.0.0.1"
@@ -20,11 +21,13 @@
   [{:keys [paste]}] 
   (let [pid (carmine (r/get "pid"))]
     (carmine 
-      (r/set pid paste)
+      (r/set pid (hu/escape-html paste))
       (r/incr "pid"))
     pid))
 
 (defn get!
-  "Get paste with given paste id."
+  "Get a stored paste."
   [{:keys [pid]}]
   (carmine (r/get pid)))
+
+(get! {:pid "0"})

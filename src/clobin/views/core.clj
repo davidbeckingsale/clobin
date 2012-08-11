@@ -12,4 +12,4 @@
          (resp/redirect (str "/paste/" (p/add! {:paste text}))))
 
 (defpage "/paste/:id" {:keys [id]}
-         (t/paste (p/get! {:pid (str id)})))
+         (t/paste (p/get! {:pid id})))
