@@ -17,10 +17,10 @@
 
 (defpartial index [& content]
             (layout
-              content
               [:form {:method "post" :action "" :class "form-stacked"}
                [:fieldset.text
                  [:label {:for "text"} "Enter some text to paste:"]
                  [:textarea {:name "text"}
                   "text"]]
-               [:button {:type "submit" :class "btn btn-primary btn-large"}] "Paste!"]))
+               [:button {:type "submit" :class "btn btn-primary btn-large"} "Paste!"]]
+              content))

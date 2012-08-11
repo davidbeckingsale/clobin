@@ -5,3 +5,6 @@
 
 (defpage "/" []
          (t/index))
+
+(defpage [:post "/"] {:keys [text]}
+         (t/index [:pre text]))
