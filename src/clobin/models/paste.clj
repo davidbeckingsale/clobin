@@ -29,5 +29,3 @@
   "Get a stored paste."
   [{:keys [pid]}]
   (carmine (r/get pid)))
-
-(get! {:pid "0"})
