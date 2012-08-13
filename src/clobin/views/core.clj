@@ -8,8 +8,10 @@
 (defpage "/" []
          (t/index))
 
-(defpage [:post "/"] {:keys [text]}
-         (resp/redirect (str "/paste/" (p/add! {:paste text}))))
+(defpage [:post "/"] {:keys [text language]}
+         (resp/redirect (str "/paste/" (p/add! {:paste text :language language}))))
 
 (defpage "/paste/:id" {:keys [id]}
-         (t/paste (p/get! {:pid id})))
+         (let [paste-entry (p/get! {:pid id})]
+           (println paste-entry)
+           (t/paste (p/get! {:pid id}))))

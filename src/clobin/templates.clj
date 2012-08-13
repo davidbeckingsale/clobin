@@ -13,7 +13,10 @@
                (include-css "/css/shCore.css")
                (include-css "/css/shThemeDefault.css")
                (include-js "/js/shCore.js")
-               (include-js "/js/shBrushCpp.js") ]
+               (include-js "/js/shBrushCpp.js") 
+               (include-js "/js/shBrushBash.js") 
+               (include-js "/js/shBrushFortran.js") 
+               ]
               [:body
                [:div.container
                 [:header
@@ -33,9 +36,15 @@
                  [:label {:for "text"} "Enter some text to paste:"]
                  [:textarea {:name "text"}
                   "text"]]
+               [:fieldset.select
+                [:label {:for "language" } "Select paste language"]
+                 [:select {:name "language" :id "language"}
+                  [:option "cpp"]
+                  [:option "fortran"]
+                  [:option "shell"]]]
                [:button {:type "submit" :class "btn btn-primary btn-large"} "Paste!"]]
               content))
 
-(defpartial paste [& content]
+(defpartial paste [{:keys [language paste]}]
             (layout
-              [:pre {:class "brush: cpp"} content]))
+              [:pre {:class (str "brush: " language)} paste]))

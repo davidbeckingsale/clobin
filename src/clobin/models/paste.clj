@@ -18,11 +18,11 @@
 
 (defn add!
   "Add a new paste."
-  [{:keys [paste]}] 
+  [{:keys [language paste]}] 
   (let [pid (carmine (r/get "pid"))]
-    (carmine 
-      (r/set pid (hu/escape-html paste))
-      (r/incr "pid"))
+    (println (carmine 
+      (r/set pid {:language language :paste (hu/escape-html paste)})
+      (r/incr "pid")))
     pid))
 
 (defn get!
